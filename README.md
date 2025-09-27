@@ -6,7 +6,9 @@ The project was created as part of the TEKNOFEST Hepsiburada Address Parsing Hac
 
 Address data in Turkey is often incomplete, incorrect, or recorded in various formats, causing:
 ->🚚 Wrong deliveries
+
 ->💸 High operational costs
+
 ->⏱️ Delayed logistics processes
 cleaRoute solves these issues by converting address data into a standard format suitable for analysis.
 
@@ -18,9 +20,13 @@ String Matching: Detects similar addresses using fuzzywuzzy and rapidfuzz
 
 🛠️ Technologies
 Programming Language: Python
+
 Data Processing: pandas, NumPy
+
 Machine Learning: scikit-learn
+
 Address & Text Processing: fuzzywuzzy, rapidfuzz
+
 Turkish NLP: BerTurk, HuggingFace/transformers
 
 📌 Summary
