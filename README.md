@@ -88,18 +88,6 @@ The `main` function:
 
 ---
 
-## 🏁 Workflow Summary
-```mermaid
-graph LR
-A[Raw CSV Files] --> B[Safe CSV Reading]
-B --> C[Address Normalization]
-C --> D[Hierarchical Extraction]
-D --> E[Feature Engineering (N-grams)]
-E --> F[TF-IDF Vectorization]
-F --> G[Nearest Neighbors Model]
-G --> H[Batch Predictions]
-H --> I[Final Output CSV]
-
 ## 📁 Key Output Files
 | File Name               | Description                                      |
 |--------------------------|---------------------------------------------------|
