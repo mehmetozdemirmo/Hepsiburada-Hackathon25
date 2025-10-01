@@ -145,15 +145,4 @@ The `main` function:
 
 ---
 
-## 📁 Project Structure
 
-hackathon/
-
-├── **adres_hiyerarsi.json**             
-├── **turkiye.json**                     
-├── **hierarchical_organization.py**   
-├── **address_matcher.py**               
-└── **standardization.py**             
- 
-
----
