@@ -6,34 +6,61 @@ The project focuses on **address cleaning, normalization, hierarchical extractio
 
 ---
 
-## 📂 Project Overview
+## 📂 Project Overview  
 The goal is to process large sets of Turkish address data and accurately predict their **province (il)**, **district (ilçe)**, and **neighborhood (mahalle)** components.  
-The pipeline includes:
-- **Data Cleaning & Normalization**  
-- **Hierarchical Address Extraction**  
-- **Text Feature Engineering (N-grams)**  
-- **TF-IDF Vectorization & Nearest Neighbors Modeling**  
-- **Efficient Batch Inference**
+
+The pipeline includes:  
+- 🧹 **Data Cleaning & Normalization** → Corrects typos, expands abbreviations, and removes unnecessary characters to standardize address formats.  
+- 🗂️ **Hierarchical Address Extraction** → Extracts structured components in a hierarchical order: Province → District → Neighborhood.  
+- ✍️ **Text Feature Engineering (N-grams)** → Generates meaningful features using word-level and character-level n-grams.  
+- 📊 **TF-IDF Vectorization & Nearest Neighbors Modeling** → Converts addresses into numerical vectors and applies nearest neighbors algorithms for classification.  
+- ⚡ **Efficient Batch Inference** → Enables fast and memory-efficient predictions on large datasets using batch processing.  
+- 🔗 **String Matching** → Uses `fuzzywuzzy` and `rapidfuzz` to detect and merge similar addresses.  
+- 🧠 **Turkish NLP Integration** → Leverages models like **BerTurk** and HuggingFace **transformers** for better language understanding.  
+- 🛠 **Tools & Libraries** → scikit-learn, pandas, rapidfuzz, tqdm, re, unicodedata  
+- 📦 **Deployment Readiness** → API integration and batch processing infrastructure for real-world usage.  
+- 📏 **Evaluation & Metrics** → Measures model performance using Accuracy, F1-score, and detailed error analysis.
 
 ---
 
 ## ⚡ Main Features
 
-### 1️⃣ Safe CSV Reading
-- **`read_csv_safe`** securely loads:
-  - `train_sorted.csv`
+### 1️⃣ Safe CSV Reading  
+- **`read_csv_safe`** is used to securely load the required datasets, ensuring proper encoding and error handling.  
+- Supported files include:  
+  - `train.csv`  
+  - `test.csv`  
+  - `train_sorted.csv`  
   - `test_normalized.csv`
 
 ---
 
-### 2️⃣ Address Normalization
-- **`normalize_address`** converts raw addresses into a **standard format**:
-  - Fixes typos and abbreviations in provinces/districts  
-    - e.g. `ist.` → `istanbul`, `ankra` → `ankara`
-  - Expands common abbreviations for streets and neighborhoods  
-    - e.g. `mh` → `mahalle`, `cd` → `cadde`, `sk` → `sokak`
-- The normalized results are stored in a new `address` column for both **train** and **test** datasets.
+### 2️⃣ Address Normalization  
 
+The **`normalize_address`** function standardizes raw address strings into a **consistent and machine-readable format**.  
+This step is crucial for reducing data noise and handling inconsistencies across large datasets.  
+
+#### 🔧 Key Operations:
+- ✅ **Province/District Name Corrections**  
+  - Fixes spelling errors and variations in city/district names.  
+  - Examples:  
+    - `ist.` → `istanbul`  
+    - `ankra` → `ankara`  
+
+- ✅ **Abbreviation Expansion**  
+  - Converts common abbreviations into their full forms to ensure uniformity.  
+  - Examples:  
+    - `mh` → `mahalle`  
+    - `cd` → `cadde`  
+    - `sk` → `sokak`  
+
+- ✅ **Whitespace & Special Character Handling**  
+  - Removes extra spaces, punctuation, or unnecessary symbols that might cause mismatches.  
+
+#### 📦 Output:
+
+ The normalized results are stored in a new `address` column for both **train** and **test** datasets.
+ 
 ---
 
 ### 3️⃣ Clean Data Export
@@ -98,68 +125,6 @@ The `main` function:
 
 ---
 
-## ⚙️ Tech Stack
-- **Python 3.x**
-- `pandas`, `numpy`
-- `scikit-learn` – TF-IDF vectorization & Nearest Neighbors
-- `rapidfuzz` – fuzzy string matching
-- `tqdm`, `logging` – progress tracking and monitoring
-
----
-
-## 🚀 Installation & Usage
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/<your-username>/address-matching.git
-cd address-matching
-
-# 🚀 cleaRoute – Turkish Address Parsing & Normalization
-> **Clean, organize, and analyze complex Turkish address data with NLP-powered accuracy.**
-
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/Python-3.9%2B-green.svg)
-![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
-<!-- Add more badges as needed: build status, stars, forks, etc. -->
-
----
-
-## 🎯 Project Overview
-This project was developed during the **TEKNOFEST Hepsiburada Address Parsing Hackathon**,  
-where our team tackled the challenge of **parsing and structuring messy Turkish addresses**.
-
-Unstandardized addresses often lead to:
-- 🚚 **Delivery errors**
-- ⏱️ **Operational delays**
-- 💸 **Increased logistics costs**
-
-**cleaRoute** provides a streamlined solution by:
-- Cleaning raw address data
-- Normalizing inconsistent formats
-- Extracting key components (city, district, neighborhood, street)
-- Matching similar addresses for deduplication
-
----
-
-## 📊 Dataset
-The project used a combination of:
-- **Hackathon-provided datasets** (private)
-- Custom synthetic datasets for testing and validation
-
-Key files:
-- `train.csv` – Training data used to build the model  
-- `test.csv` – Test set for evaluation  
-- `submission.csv` – Sample output of parsed and normalized addresses
-
----
-
-## ✨ Key Features
-- **Data Cleaning & Normalization** – Handle typos, inconsistent spacing, and casing.
-- **Component Extraction** – Identify city, district, neighborhood, and street details.
-- **String Matching** – Apply `fuzzywuzzy` and `rapidfuzz` to detect and merge similar addresses.
-- **Turkish NLP Integration** – Utilize models like **BerTurk** and HuggingFace **transformers** for better language understanding.
-- **Scalable Workflow** – Works efficiently with large datasets.
-
----
 
 ## 🛠️ Tech Stack
 | Category             | Technologies Used |
@@ -174,9 +139,11 @@ Key files:
 
 ## 📁 Project Structure
 
-hackathon/
-├── KaggleEmbedding.ipynb    # Data preprocessing & embedding creation
-├── colab_training.ipynb     # Main model training and evaluation
-├── main.py                   # Command-line pipeline to clean & parse addresses
-├── requirements.txt          # Python dependencies
-└── submission.csv            # Sample prediction results
+hackathon/  
+├── adres_hiyerarsi.json          # Turkish address hierarchy (province → district → neighborhood mapping)  
+├── turkiye.json                  # Reference data for Turkish provinces, districts, and neighborhoods  
+├── hierarchical_organization.py  # Pipeline for cleaning, normalizing, and parsing addresses  
+├── address_matcher.py            # Core matching module (TF-IDF + Nearest Neighbors)  
+└── standardization.py            # Address normalization and preprocessing utilities  
+
+---
