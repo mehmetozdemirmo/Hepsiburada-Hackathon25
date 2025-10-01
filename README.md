@@ -116,7 +116,7 @@ The `main` function:
 ---
 
 ## 📁 Key Output Files
-| File Name               | Description                                      |
+| File Name                | Description                                       |
 |--------------------------|---------------------------------------------------|
 | `train_normalized.csv`   | Cleaned training data (label + normalized address)|
 | `test_normalized.csv`    | Cleaned test data (id + normalized address)       |
@@ -128,7 +128,7 @@ The `main` function:
 
 ## 🛠️ Tech Stack
 | Category             | Technologies Used |
-|-----------------------|-------------------|
+|----------------------|-------------------|
 | **Programming**      | Python 3.9+ |
 | **Libraries**        | pandas, NumPy, scikit-learn, fuzzywuzzy, rapidfuzz, regex |
 | **NLP Tools**        | BerTurk, HuggingFace Transformers |
@@ -139,11 +139,13 @@ The `main` function:
 
 ## 📁 Project Structure
 
-hackathon/  
-├── adres_hiyerarsi.json          # Turkish address hierarchy (province → district → neighborhood mapping)  
-├── turkiye.json                  # Reference data for Turkish provinces, districts, and neighborhoods  
-├── hierarchical_organization.py  # Pipeline for cleaning, normalizing, and parsing addresses  
-├── address_matcher.py            # Core matching module (TF-IDF + Nearest Neighbors)  
-└── standardization.py            # Address normalization and preprocessing utilities  
+hackathon/
+
+├── **adres_hiyerarsi.json**             
+├── **turkiye.json**                     
+├── **hierarchical_organization.py**   
+├── **address_matcher.py**               
+└── **standardization.py**             
+ 
 
 ---
