@@ -98,11 +98,13 @@ This step is crucial for reducing data noise and handling inconsistencies across
 ---
 
 ### 7️⃣ Address Prediction (Inference)
-- For each test address:
-- Finds nearest neighbors and collects their labels.
-- Uses **weighted voting** based on similarity scores.
-- If similarity is too low → **fallback to the most frequent label**.
-- Supports **batch processing** for memory-efficient, high-speed predictions.
+- Preprocesses each test address and extracts enriched features (numbers, keywords, n-grams).  
+- Finds nearest neighbors from the training set and collects their labels.  
+- Uses **weighted voting** based on cosine similarity scores to determine the predicted label.  
+- Falls back to the **most frequent label** if the closest neighbor is too dissimilar.  
+- Supports **batch processing** for memory-efficient, high-speed predictions.  
+- Handles both **single and batch predictions**, automatically managing missing or empty addresses.  
+- Outputs results as a CSV file with columns: `id` and `label`.  
 
 ---
 
@@ -122,18 +124,24 @@ The `main` function:
 | `test_normalized.csv`    | Cleaned test data (id + normalized address)       |
 | `test_hierarchical.csv`  | Test data with hierarchical components            |
 | `predictions.csv`        | Final model predictions                           |
+| `train_sorted.csv`	     | Sorted and preprocessed training dataset          |
+| `test_sorted.csv`        | Sorted and preprocessed test dataset              |
 
 ---
 
 
 ## 🛠️ Tech Stack
-| Category             | Technologies Used |
-|----------------------|-------------------|
-| **Programming**      | Python 3.9+ |
-| **Libraries**        | pandas, NumPy, scikit-learn, fuzzywuzzy, rapidfuzz, regex |
-| **NLP Tools**        | BerTurk, HuggingFace Transformers |
-| **Environment**      | Jupyter Notebook, Colab |
-| **Version Control**  | Git & GitHub |
+
+| Category            | Technologies Used                                                          |
+| ------------------- | -------------------------------------------------------------------------- |
+| **Programming**     | Python 3.9+                                                                |
+| **Libraries**       | pandas, NumPy, scikit-learn, fuzzywuzzy, rapidfuzz, regex, unicodedata, re |
+| **Data Processing** | tqdm, logging, gc, time, os, json                                          |
+| **NLP Tools**       | BerTurk, HuggingFace Transformers, TF-IDF Vectorizer, N-grams              |
+| **Environment**     | Jupyter Notebook, Colab, Local Python Environment                          |
+| **Version Control** | Git & GitHub                                                               |
+| **Data Formats**    | CSV, JSON                                                                  |
+| **ML Models**       | Nearest Neighbors (KNN), TF-IDF Embeddings                                 |
 
 ---
 
